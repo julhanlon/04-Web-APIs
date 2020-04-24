@@ -6,8 +6,8 @@ const choiceA = document.getElementById("A");
 const choiceB = document.getElementById("B");
 const choiceC = document.getElementById("C");
 const counter = document.getElementById("counter");
-const timeGauge = document.getElementById("timeGauge");
 const scoreDiv = document.getElementById("scoreContainer");
+var timer = document.getElementById("timer");
 
 // create our questions
 let questions = [
@@ -114,36 +114,12 @@ function startQuiz() {
   renderQuestion();
   quiz.style.display = "block";
   renderProgress();
-  renderCounter();
-  TIMER = setInterval(renderCounter, 1000); // 1000ms = 1s
 }
 
 // render progress
 function renderProgress() {
   for (let qIndex = 0; qIndex <= lastQuestion; qIndex++) {
     progress.innerHTML += "<div class='prog' id=" + qIndex + "></div>";
-  }
-}
-
-// counter render
-
-function renderCounter() {
-  if (count <= questionTime) {
-    counter.innerHTML = count;
-    timeGauge.style.width = count * gaugeUnit + "px";
-    count++;
-  } else {
-    count = 0;
-    // change progress color to red
-    answerIsWrong();
-    if (runningQuestion < lastQuestion) {
-      runningQuestion++;
-      renderQuestion();
-    } else {
-      // end the quiz and show the score
-      clearInterval(TIMER);
-      scoreRender();
-    }
   }
 }
 
@@ -160,7 +136,7 @@ function checkAnswer(answer) {
     renderQuestion();
   } else {
     // end the quiz and show the score
-    clearInterval(TIMER);
+
     scoreRender();
   }
 }
@@ -168,6 +144,7 @@ function checkAnswer(answer) {
 // score render
 function scoreRender() {
   scoreDiv.style.display = "block";
+  quiz.style.display = "none";
 
   // calculate the amount of question percent answered by the user
   const scorePerCent = Math.round((100 * score) / questions.length);
