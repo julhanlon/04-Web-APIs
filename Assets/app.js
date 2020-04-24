@@ -7,7 +7,8 @@ const choiceB = document.getElementById("B");
 const choiceC = document.getElementById("C");
 const counter = document.getElementById("counter");
 const scoreDiv = document.getElementById("scoreContainer");
-var timer = document.getElementById("timer");
+const userInit = document.getElementById("userInit");
+const btnSubmit = document.getElementById("btnSubmit");
 
 // create our questions
 let questions = [
@@ -89,11 +90,6 @@ let questions = [
 
 const lastQuestion = questions.length - 1;
 let runningQuestion = 0;
-let count = 0;
-const questionTime = 10; // 10s
-const gaugeWidth = 150; // 150px
-const gaugeUnit = gaugeWidth / questionTime;
-let TIMER;
 let score = 0;
 
 // render a question
@@ -108,19 +104,16 @@ function renderQuestion() {
 
 start.addEventListener("click", startQuiz);
 
+btnSubmit.addEventListener("click", highScores);
+
 // start quiz
 function startQuiz() {
   start.style.display = "none";
   renderQuestion();
   quiz.style.display = "block";
-  renderProgress();
-}
-
-// render progress
-function renderProgress() {
-  for (let qIndex = 0; qIndex <= lastQuestion; qIndex++) {
-    progress.innerHTML += "<div class='prog' id=" + qIndex + "></div>";
-  }
+  var twoMinutes = 60 * 2,
+    display = document.querySelector("#time");
+  startTimer(twoMinutes, display);
 }
 
 // checkAnwer
@@ -130,7 +123,9 @@ function checkAnswer(answer) {
     // answer is correct
     score++;
   }
+
   count = 0;
+
   if (runningQuestion < lastQuestion) {
     runningQuestion++;
     renderQuestion();
@@ -150,4 +145,33 @@ function scoreRender() {
   const scorePerCent = Math.round((100 * score) / questions.length);
 
   scoreDiv.innerHTML += "<p>" + scorePerCent + "%</p>";
+}
+
+function startTimer(duration, display) {
+  var timer = duration,
+    minutes,
+    seconds;
+  setInterval(function () {
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    display.textContent = minutes + ":" + seconds;
+
+    if (--timer < 0) {
+      timer = duration;
+    }
+  }, 1000);
+}
+
+function highScores() {
+  //show new form element
+  scoreDiv.style.display = "block";
+  //   var textInput = "";
+  //   var textArray = [];
+  //   textInput = $("#textInput").val();
+  //     if (textInput.length > 0) {
+  //       textArray.push(textInput);
 }

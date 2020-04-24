@@ -8,7 +8,7 @@
   <body>
     <nav class="nav">
       <h3>Julia's Geography Quiz</h3>
-      <h4 class="timer"></h4>
+      <h4>Quiz ends in <span id="time">02:00</span> minutes!</h4>
     </nav>
     <div id="container">
       <div id="start">Begin Quiz</div>
@@ -19,13 +19,17 @@
           <div class="choice" id="B" onclick="checkAnswer('B')"></div>
           <div class="choice" id="C" onclick="checkAnswer('C')"></div>
         </div>
-        <div id="timer">
-          <div id="counter"></div>
-          <div id="btimeGauge"></div>
-          <div id="timeGauge"></div>
-        </div>
       </div>
-      <div id="scoreContainer" style="display: none;"></div>
+      <div id="scoreContainer" style="display: none;">
+        <form id="initialForm"></form>
+          <input
+            id="userInit"
+            placeholder="add your initials here"
+            type="text"
+          />
+          <button id="btnSubmit" class = "btn" type="Submit">Submit</button>
+        </form>
+      </div>
     </div>
     <script src="./Assets/app.js"></script>
   </body>
