@@ -9,6 +9,7 @@ const counter = document.getElementById("counter");
 const scoreDiv = document.getElementById("scoreContainer");
 const userInit = document.getElementById("userInit");
 const btnSubmit = document.getElementById("btnSubmit");
+const timeH4 = document.getElementById("timeH4");
 
 // create our questions
 let questions = [
@@ -108,6 +109,7 @@ btnSubmit.addEventListener("click", highScores);
 
 // start quiz
 function startQuiz() {
+  console.log("click");
   start.style.display = "none";
   renderQuestion();
   quiz.style.display = "block";
@@ -138,7 +140,7 @@ function checkAnswer(answer) {
 
 // score render
 function scoreRender() {
-  scoreDiv.style.display = "block";
+  scoreDiv.style.visibility = "visible";
   quiz.style.display = "none";
 
   // calculate the amount of question percent answered by the user
@@ -162,16 +164,27 @@ function startTimer(duration, display) {
 
     if (--timer < 0) {
       timer = duration;
+      alert("Time is up!");
+      scoreDiv.style.visibility = "visible";
+      quiz.style.display = "none";
+      time.style.display = "none";
+      timeH4.style.display = "none";
     }
   }, 1000);
 }
 
-function highScores() {
-  //show new form element
-  scoreDiv.style.display = "block";
-  //   var textInput = "";
-  //   var textArray = [];
-  //   textInput = $("#textInput").val();
-  //     if (textInput.length > 0) {
-  //       textArray.push(textInput);
+function highScores(event) {
+  event.preventDefault();
+  console.log("click");
+  var userInitals = userInit.textContent;
+  console.log(userInitals);
+  var scoreOb = {
+    initials: userInitials,
+    score: score,
+  };
+
+  var highestScores = JSON.parse(localStorage.getItem("scores"));
+  //null check highest scores make empty array
+  highestScores.push(scoreOb);
+  localStorage.setItem("scores", highScores);
 }

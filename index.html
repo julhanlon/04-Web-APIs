@@ -8,7 +8,7 @@
   <body>
     <nav class="nav">
       <h3>Julia's Geography Quiz</h3>
-      <h4>Quiz ends in <span id="time">02:00</span> minutes!</h4>
+      <h4 id= "timeH4">Quiz ends in <span id="time">02:00</span> minutes!</h4>
     </nav>
     <div id="container">
       <div id="start">Begin Quiz</div>
@@ -20,14 +20,14 @@
           <div class="choice" id="C" onclick="checkAnswer('C')"></div>
         </div>
       </div>
-      <div id="scoreContainer" style="display: none;">
+      <div id="scoreContainer" style="visibility: hidden;">
         <form id="initialForm"></form>
           <input
             id="userInit"
             placeholder="add your initials here"
             type="text"
           />
-          <button id="btnSubmit" class = "btn" type="Submit">Submit</button>
+          <button id="btnSubmit" type="Submit">Submit</button>
         </form>
       </div>
     </div>
