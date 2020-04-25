@@ -106,6 +106,7 @@ function renderQuestion() {
 start.addEventListener("click", startQuiz);
 
 btnSubmit.addEventListener("click", highScores);
+console.log(highestScores);
 
 // start quiz
 function startQuiz() {
@@ -113,9 +114,7 @@ function startQuiz() {
   start.style.display = "none";
   renderQuestion();
   quiz.style.display = "block";
-  var twoMinutes = 60 * 2,
-    display = document.querySelector("#time");
-  startTimer(twoMinutes, display);
+  startTimer();
 }
 
 // checkAnwer
@@ -124,6 +123,8 @@ function checkAnswer(answer) {
   if (answer == questions[runningQuestion].correct) {
     // answer is correct
     score++;
+  } else {
+    timeleft -= 5;
   }
 
   count = 0;
@@ -148,43 +149,46 @@ function scoreRender() {
 
   scoreDiv.innerHTML += "<p>" + scorePerCent + "%</p>";
 }
-
-function startTimer(duration, display) {
-  var timer = duration,
-    minutes,
-    seconds;
-  setInterval(function () {
-    minutes = parseInt(timer / 60, 10);
-    seconds = parseInt(timer % 60, 10);
-
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
-
-    display.textContent = minutes + ":" + seconds;
-
-    if (--timer < 0) {
-      timer = duration;
+//create the timer
+var timeleft = 60;
+function startTimer() {
+  var downloadTimer = setInterval(function () {
+    if (timeleft <= 0) {
+      clearInterval(downloadTimer);
+      document.getElementById("time").innerHTML = "Finished";
       alert("Time is up!");
       scoreDiv.style.visibility = "visible";
       quiz.style.display = "none";
       time.style.display = "none";
       timeH4.style.display = "none";
+      scoreRender();
+    } else {
+      document.getElementById("time").innerHTML =
+        timeleft + " seconds remaining";
     }
+    timeleft -= 1;
   }, 1000);
 }
 
+var highestScores = JSON.parse(localStorage.getItem("highscores")) || [];
+
 function highScores(event) {
   event.preventDefault();
-  console.log("click");
-  var userInitals = userInit.textContent;
+  var userInitals = userInit.value;
   console.log(userInitals);
+
   var scoreOb = {
     initials: userInitials,
     score: score,
   };
 
-  var highestScores = JSON.parse(localStorage.getItem("scores"));
+  console.log(highestScores);
   //null check highest scores make empty array
   highestScores.push(scoreOb);
-  localStorage.setItem("scores", highScores);
+
+  highestScores.sort((a, b) => b.score - a.score);
+
+  highestScores.splice(5);
+
+  localStorage.setItem("highscores", JSON.stringify(highestScores));
 }
