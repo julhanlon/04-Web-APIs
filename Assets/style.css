@@ -115,3 +115,9 @@ body {
   font-weight: bold;
   text-align: center;
 }
+
+#resultsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

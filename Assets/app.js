@@ -140,7 +140,7 @@ function checkAnswer(answer) {
 
 // score render
 function scoreRender() {
-  scoreContainer.style.visibility = "visible";
+  scoreContainer.style.display = "block";
   quiz.style.display = "none";
   time.style.display = "none";
   // calculate the amount of question percent answered by the user
@@ -158,7 +158,7 @@ function startTimer() {
       clearInterval(downloadTimer);
       document.getElementById("time").innerHTML = "Finished";
       alert("Time is up!");
-      scoreContainer.style.visibility = "visible";
+      scoreContainer.style.display = "block";
       quiz.style.display = "none";
       time.style.display = "none";
       timeH4.style.display = "none";
@@ -176,16 +176,30 @@ const arrhighestScores =
 
 function saveHighScores(e) {
   e.preventDefault();
-  userInit.value = "";
   console.log(userInit);
 
   var scoreOb = {
-    initials: userInit,
+    initials: userInit.value,
     finalscore: score * 10,
   };
 
   //null check highest scores make empty array
   arrhighestScores.push(scoreOb);
 
-  localStorage.setItem("highscores", JSON.stringify(arrhighestScores));
+  window.localStorage.setItem("highscores", JSON.stringify(arrhighestScores));
+
+  var resultsContainer = document.getElementById("resultsContainer");
+
+  for (let i = 0; i < arrhighestScores.length; i++) {
+    var p = document.createElement("p");
+    p.innerHTML =
+      arrhighestScores[i].initials + ":" + arrhighestScores[i].finalscore;
+    resultsContainer.appendChild(p);
+    arrhighestScores.sort();
+  }
+
+  scoreContainer.style.display = "none";
+  resultsContainer.style.display = "block";
+
+  console.log(arrhighestScores);
 }
