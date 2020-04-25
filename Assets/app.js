@@ -6,7 +6,7 @@ const choiceA = document.getElementById("A");
 const choiceB = document.getElementById("B");
 const choiceC = document.getElementById("C");
 const counter = document.getElementById("counter");
-const scoreDiv = document.getElementById("scoreContainer");
+const scoreContainer = document.getElementById("scoreContainer");
 const userInit = document.getElementById("userInit");
 const btnSubmit = document.getElementById("btnSubmit");
 const timeH4 = document.getElementById("timeH4");
@@ -105,8 +105,7 @@ function renderQuestion() {
 
 start.addEventListener("click", startQuiz);
 
-btnSubmit.addEventListener("click", highScores);
-console.log(highestScores);
+btnSubmit.addEventListener("click", saveHighScores);
 
 // start quiz
 function startQuiz() {
@@ -141,13 +140,15 @@ function checkAnswer(answer) {
 
 // score render
 function scoreRender() {
-  scoreDiv.style.visibility = "visible";
+  scoreContainer.style.visibility = "visible";
   quiz.style.display = "none";
-
+  time.style.display = "none";
   // calculate the amount of question percent answered by the user
   const scorePerCent = Math.round((100 * score) / questions.length);
 
-  scoreDiv.innerHTML += "<p>" + scorePerCent + "%</p>";
+  var pEl = document.createElement("p");
+  pEl.textContent = scorePerCent;
+  scoreContainer.appendChild(pEl);
 }
 //create the timer
 var timeleft = 60;
@@ -157,7 +158,7 @@ function startTimer() {
       clearInterval(downloadTimer);
       document.getElementById("time").innerHTML = "Finished";
       alert("Time is up!");
-      scoreDiv.style.visibility = "visible";
+      scoreContainer.style.visibility = "visible";
       quiz.style.display = "none";
       time.style.display = "none";
       timeH4.style.display = "none";
@@ -170,25 +171,21 @@ function startTimer() {
   }, 1000);
 }
 
-var highestScores = JSON.parse(localStorage.getItem("highscores")) || [];
+const arrhighestScores =
+  JSON.parse(window.localStorage.getItem("highscores")) || [];
 
-function highScores(event) {
-  event.preventDefault();
-  var userInitals = userInit.value;
-  console.log(userInitals);
+function saveHighScores(e) {
+  e.preventDefault();
+  userInit.value = "";
+  console.log(userInit);
 
   var scoreOb = {
-    initials: userInitials,
-    score: score,
+    initials: userInit,
+    finalscore: score * 10,
   };
 
-  console.log(highestScores);
   //null check highest scores make empty array
-  highestScores.push(scoreOb);
+  arrhighestScores.push(scoreOb);
 
-  highestScores.sort((a, b) => b.score - a.score);
-
-  highestScores.splice(5);
-
-  localStorage.setItem("highscores", JSON.stringify(highestScores));
+  localStorage.setItem("highscores", JSON.stringify(arrhighestScores));
 }

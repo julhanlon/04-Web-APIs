@@ -72,13 +72,13 @@ body {
   display: inline-block;
   width: 140px;
   text-align: center;
-  border: 1px solid grey;
+  border: 1px solid cornflowerblue;
   border-radius: 5px;
   cursor: pointer;
   padding: 5px;
 }
 .choice:hover {
-  border: 2px solid grey;
+  border: 2px solid cornflowerblue;
   font-weight: bold;
 }
 
