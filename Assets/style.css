@@ -12,6 +12,7 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: baseline;
+  padding-top: 10px;
 }
 
 #container {
@@ -120,4 +121,5 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-left: 150px;
 }

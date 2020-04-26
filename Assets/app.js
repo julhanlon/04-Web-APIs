@@ -147,7 +147,7 @@ function scoreRender() {
   const scorePerCent = Math.round((100 * score) / questions.length);
 
   var pEl = document.createElement("p");
-  pEl.textContent = scorePerCent;
+  pEl.textContent = scorePerCent + "%";
   scoreContainer.appendChild(pEl);
 }
 //create the timer
@@ -163,6 +163,8 @@ function startTimer() {
       time.style.display = "none";
       timeH4.style.display = "none";
       scoreRender();
+    } else if (runningQuestion == lastQuestion) {
+      clearInterval(downloadTimer);
     } else {
       document.getElementById("time").innerHTML =
         timeleft + " seconds remaining";
@@ -176,7 +178,6 @@ const arrhighestScores =
 
 function saveHighScores(e) {
   e.preventDefault();
-  console.log(userInit);
 
   var scoreOb = {
     initials: userInit.value,
@@ -185,6 +186,7 @@ function saveHighScores(e) {
 
   //null check highest scores make empty array
   arrhighestScores.push(scoreOb);
+  arrhighestScores.sort((a, b) => b.finalscore - a.finalscore);
 
   window.localStorage.setItem("highscores", JSON.stringify(arrhighestScores));
 
@@ -193,9 +195,8 @@ function saveHighScores(e) {
   for (let i = 0; i < arrhighestScores.length; i++) {
     var p = document.createElement("p");
     p.innerHTML =
-      arrhighestScores[i].initials + ":" + arrhighestScores[i].finalscore;
+      arrhighestScores[i].initials + " : " + arrhighestScores[i].finalscore;
     resultsContainer.appendChild(p);
-    arrhighestScores.sort();
   }
 
   scoreContainer.style.display = "none";
