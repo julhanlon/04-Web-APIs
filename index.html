@@ -18,7 +18,7 @@
       <h4 id="timeH4"><span id="time"></span></h4>
     </nav>
     <div id="container" class = "container text-center">
-      <div id="start">Begin Quiz</div>
+      <button id = "start" type="button" class="btn btn-light btn-lg">Begin Quiz</button>
       <div id="quiz" style="display: none;">
         <div id="question"></div>
         <div id="choices">
@@ -28,17 +28,18 @@
         </div>
       </div>
       <div id="scoreContainer" style="display: none;">
-        <form id="initialForm">
-          <input
-            id="userInit"
-            placeholder="add your initials here"
-            type="text"
-          />
-          <button id="btnSubmit" type="Submit">Submit</button>
-        </form>
+<form id="initialForm">
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <button id = "btnSubmit" class="btn btn-light" type="button" id="button-addon1">Submit</button>
+    </div>
+    <input  id="userInit" type="text" class="form-control" placeholder="add your initials" aria-label="Example text with button addon" aria-describedby="button-addon1">
+  </div>
+</form>
+       
       </div>
       <div id="resultsContainer" class="text center" style="display: none;">
-        <h3>High Scores</h3>
+        <h3 id = "highScores">High Scores</h3>
       </div>
     </div>
     <script src="./Assets/app.js"></script>

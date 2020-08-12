@@ -79,7 +79,7 @@ let questions = [
   },
   {
     question:
-      "What country is the newest in the world to be recognised by the UN?",
+      "What country is the newest in the world to be recognized by the UN?",
     choiceA: "South Sudan",
     choiceB: "East Timor",
     choiceC: "Kosovo",
