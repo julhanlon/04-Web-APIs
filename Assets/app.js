@@ -110,7 +110,7 @@ btnSubmit.addEventListener("click", saveHighScores);
 // start quiz
 function startQuiz() {
   console.log("click");
-  start.style.display = "noneb";
+  start.style.display = "none";
   renderQuestion();
   quiz.style.display = "block";
   startTimer();
