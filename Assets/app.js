@@ -39,7 +39,7 @@ let questions = [
   {
     question: "The Danube flows into what body of water?",
     choiceA: "Caspian Sea",
-    choiceB: "The Mediterranean Sea",
+    choiceB: "Mediterranean Sea",
     choiceC: "The Black Sea",
     correct: "C",
   },
@@ -206,6 +206,7 @@ function saveHighScores(e) {
 
   scoreContainer.style.display = "none";
   resultsContainer.style.display = "block";
+  btnRestart.style.display = "block";
 
   console.log(arrhighestScores);
 }
