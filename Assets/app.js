@@ -186,7 +186,7 @@ function saveHighScores(e) {
 
   var scoreOb = {
     initials: userInit.value,
-    finalscore: score * 10,
+    finalscore: score * 10 + " " + "points",
   };
 
   //null check highest scores make empty array
