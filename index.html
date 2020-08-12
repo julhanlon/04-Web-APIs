@@ -14,7 +14,7 @@
   </head>
   <body>
     <nav class="nav text-center">
-      <h3 class = "mt-2">Geography Quiz</h3>
+      <h3 id = "nav" class = "mt-2">Geography Quiz</h3>
       <h4 id="timeH4"><span id="time"></span></h4>
     </nav>
     <div id="container" class = "container text-center">
@@ -22,9 +22,9 @@
       <div id="quiz" style="display: none;">
         <div id="question"></div>
         <div id="choices">
-          <div class="choice" id="A" onclick="checkAnswer('A')"></div>
-          <div class="choice" id="B" onclick="checkAnswer('B')"></div>
-          <div class="choice" id="C" onclick="checkAnswer('C')"></div>
+          <button class="choice btn btn-light" id="A" onclick="checkAnswer('A')"></button>
+          <button class="choice btn btn-light" id="B" onclick="checkAnswer('B')"></button>
+          <button class="choice btn btn-light" id="C" onclick="checkAnswer('C')"></button>
         </div>
       </div>
       <div id="scoreContainer" style="display: none;">

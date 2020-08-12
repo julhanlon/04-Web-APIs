@@ -1,5 +1,6 @@
 // select all elements
 const start = document.getElementById("start");
+const navbar = document.getElementById("nav");
 const quiz = document.getElementById("quiz");
 const question = document.getElementById("question");
 const choiceA = document.getElementById("A");
@@ -111,6 +112,7 @@ btnSubmit.addEventListener("click", saveHighScores);
 function startQuiz() {
   console.log("click");
   start.style.display = "none";
+  navbar.style.display = "none";
   renderQuestion();
   quiz.style.display = "block";
   startTimer();
