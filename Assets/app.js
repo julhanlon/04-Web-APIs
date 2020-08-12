@@ -10,6 +10,7 @@ const counter = document.getElementById("counter");
 const scoreContainer = document.getElementById("scoreContainer");
 const userInit = document.getElementById("userInit");
 const btnSubmit = document.getElementById("btnSubmit");
+const btnRestart = document.getElementById("btnRestart");
 const timeH4 = document.getElementById("timeH4");
 
 // create our questions
@@ -108,6 +109,8 @@ start.addEventListener("click", startQuiz);
 
 btnSubmit.addEventListener("click", saveHighScores);
 
+btnRestart.addEventListener("click", restart);
+
 // start quiz
 function startQuiz() {
   console.log("click");
@@ -149,7 +152,7 @@ function scoreRender() {
   const scorePerCent = Math.round((100 * score) / questions.length);
 
   var pEl = document.createElement("p");
-  pEl.textContent = scorePerCent + "%";
+  pEl.textContent = "Your Score:" + " " + scorePerCent + "%";
   scoreContainer.appendChild(pEl);
 }
 //create the timer
@@ -205,4 +208,9 @@ function saveHighScores(e) {
   resultsContainer.style.display = "block";
 
   console.log(arrhighestScores);
+}
+
+
+function restart() {
+  location.reload();
 }

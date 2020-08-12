@@ -1,12 +1,12 @@
-# 04 Web APIs: Code Quiz
+# Web APIs: Quiz
 
 A timed code quiz with multiple-choice questions. This app will run in the browser and feature dynamically updated HTML and CSS powered by your JavaScript code. It will also feature a clean and polished user interface and be responsive, ensuring that it adapts to multiple screen sizes.
 
 ## User Story
 
 ```
-I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-SO THAT I can gauge my progress compared to my peers
+I want to take a timed quiz on JavaScript fundamentals that stores high scores
+SO that I can gauge my progress compared to my peers
 ```
 
 ##  Criteria
